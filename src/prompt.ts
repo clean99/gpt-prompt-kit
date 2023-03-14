@@ -1,10 +1,4 @@
-import { Configuration, OpenAIApi, CreateChatCompletionRequest } from 'openai'
-
-const configuration = new Configuration({
-    apiKey: '',
-})
-
-const openai = new OpenAIApi(configuration)
+import { Configuration, OpenAIApi, CreateChatCompletionRequest, ChatCompletionRequestMessageRoleEnum } from 'openai'
 
 const DEFUALT_OPTIONS = {
     model: "gpt-3.5-turbo",
@@ -20,3 +14,10 @@ export const prompt = async (messages: CreateChatCompletionRequest['messages'], 
     return response?.data?.choices?.[0]?.message?.content ?? ''
 }
 
+export const promptWithTextGenerator = (apiKey: string) => async (content: string): Promise<string> => {
+    const configuration = new Configuration({
+        apiKey,
+    });
+    const openai = new OpenAIApi(configuration);
+    return prompt([{ content, role: ChatCompletionRequestMessageRoleEnum.User }], openai);
+}

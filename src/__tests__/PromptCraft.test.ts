@@ -1,33 +1,41 @@
 import { Interpreter, Lang } from "../constant";
 import PromptCraft from "../PromptCraft";
+import * as defaultPrompt from "../prompt";
+
+// mock ./prompt
+jest.mock("../prompt", () => {
+    return {
+        promptWithTextGenerator: jest.fn(),
+    };
+});
 
 describe("PromptCraft", () => {
-    const prompt = jest.fn();
+    const mockOpenai = jest.fn();
     const getCodeBlock = jest.fn();
-    let promptCraft: PromptCraft;
+    const mockPrompt = jest.fn();
+    const promptCraft: PromptCraft = new PromptCraft(mockPrompt, getCodeBlock);
     beforeEach(() => {
-        prompt.mockClear();
         getCodeBlock.mockClear();
-        promptCraft = new PromptCraft(prompt, getCodeBlock);
+        mockPrompt.mockClear();
     });
 
     it('should init an instance with correct api key when new a promptCraft', () => {
         expect(promptCraft).toBeDefined();
     });
 
-    it('should call prompt with correct text when call translate', () => {
+    it('should call prompt with correct text when call translate', async () => {
         const from = Lang.French;
         const to = Lang.English;
-        const translator = promptCraft.translate(from, to);
+        const translator =  promptCraft.translate(from, to);
         const text = 'hello'
     
-        translator(text);
+        await translator(text);
     
-        expect(prompt).toBeCalledWith(`A ${from} phrase is provided: ${text}
+        expect(mockPrompt).toBeCalledWith(`A ${from} phrase is provided: ${text}
             The masterful ${from} translator flawlessly translates the phrase into ${to}:`)
     });
 
-    it('should call prompt with correct text when call formatJson', () => {
+    it('should call prompt with correct text when call formatJson', async () => {
         const jsonSchema = {
             page_name: "The name of the page to get the text for.",
             page_url: "The URL of the page.",
@@ -38,11 +46,11 @@ describe("PromptCraft", () => {
         const input = {
             page_name: "Taken 4: The Musical"
         }
-        const formatJsonWithSchema = promptCraft.formatJson(jsonSchema);
+        const formatJsonWithSchema =  promptCraft.formatJson(jsonSchema);
       
-        formatJsonWithSchema(description, input);
+        await formatJsonWithSchema(description, input);
       
-        expect(prompt.mock.calls).toMatchInlineSnapshot(`
+        expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
 [
   [
     "
@@ -66,7 +74,7 @@ describe("PromptCraft", () => {
     })
 
 
-it('should call prompt with correct text when call formatFree', () => {
+it('should call prompt with correct text when call formatFree', async () => {
     const customSchema = `
       Tilte: <Title>
       ## Abstract ##
@@ -79,9 +87,9 @@ it('should call prompt with correct text when call formatFree', () => {
     const description = `Generate an arXiv pre-print with the given title.`
     const formatFreeWithSchema = promptCraft.formatFree(customSchema);
   
-    formatFreeWithSchema(description);
+    await formatFreeWithSchema(description);
   
-    expect(prompt.mock.calls).toMatchInlineSnapshot(`
+    expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
 [
   [
     "
@@ -106,14 +114,14 @@ it('should call prompt with correct text when call formatFree', () => {
 expect(getCodeBlock).toBeCalled()
 })
 
-it('should call prompt with correct text when call useInterpreter', () => {
+it('should call prompt with correct text when call useInterpreter', async () => {
     const interpreter = Interpreter.JS_V8;
     const question = `What is the answer to life, the universe, and everything?`
     const useInterpreterWithInterpreter = promptCraft.useInterpreter(interpreter);
   
-    useInterpreterWithInterpreter(question);
+   await useInterpreterWithInterpreter(question);
   
-    expect(prompt.mock.calls).toMatchInlineSnapshot(`
+    expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
 [
   [
     "

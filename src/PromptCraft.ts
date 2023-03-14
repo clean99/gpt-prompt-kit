@@ -1,8 +1,7 @@
-import { Lang, Interpreter } from "./constant";
+import { Lang, Interpreter } from './constant';
 import { getCodeBlock as defaultGetCodeBlock } from './textNormalization';
 
 interface PromptEngineering {
-    
   /**
    * Returns a function that translates the given text from the specified source language to the target language.
    * @param {string} from The source language.
@@ -16,7 +15,9 @@ interface PromptEngineering {
    * @param {object} schema The JSON schema to format the data into.
    * @returns {(description: string, input: object) => string} A function that takes an input object and returns the formatted JSON string.
    */
-  formatJson: (schema: Record<string, unknown>) => (description: string, input: object) => Promise<string>;
+  formatJson: (
+    schema: Record<string, unknown>
+  ) => (description: string, input: object) => Promise<string>;
 
   /**
    * Returns a function that formats the given input data according to the specified format string.
@@ -30,65 +31,72 @@ interface PromptEngineering {
    * @param {Interpreter} interpreter The name or path of the external interpreter to use.
    * @returns {(question: string) => string} A function that takes a question string and returns the interpreter's answer.
    */
-  useInterpreter: (interpreter: Interpreter) => (question: string) => Promise<string>;
+  useInterpreter: (
+    interpreter: Interpreter
+  ) => (question: string) => Promise<string>;
 }
 
 class PromptCraft implements PromptEngineering {
-    // prompt method, pass when construct
-    private prompt: (text: string) => Promise<string>;
-    private getCodeBlock: (text: string) => string | null;
+  // prompt method, pass when construct
+  private prompt: (text: string) => Promise<string>;
+  private getCodeBlock: (text: string) => string | null;
 
-    constructor(prompt: (text: string) => Promise<string>, getCodeBlock: (text: string) => string | null = defaultGetCodeBlock) {
-        this.prompt = prompt;
-        this.getCodeBlock = getCodeBlock;
-    }
+  constructor(
+    prompt: (text: string) => Promise<string>,
+    getCodeBlock: (text: string) => string | null = defaultGetCodeBlock
+  ) {
+    this.prompt = prompt;
+    this.getCodeBlock = getCodeBlock;
+  }
 
-    // translate method
-    translate(from: Lang, to: Lang) {
-        return (text: string) => {
-            return this.prompt(`A ${from} phrase is provided: ${text}
+  // translate method
+  translate(from: Lang, to: Lang) {
+    return (text: string) => {
+      return this.prompt(`A ${from} phrase is provided: ${text}
             The masterful ${from} translator flawlessly translates the phrase into ${to}:`);
-        };
-    }
+    };
+  }
 
-    // formatJson method
-    formatJson(schema: Record<string, unknown>) {
-        return async (description: string, input: object) => {
-            const promptResult = await this.prompt(`
+  // formatJson method
+  formatJson(schema: Record<string, unknown>) {
+    return async (description: string, input: object) => {
+      const promptResult = await this.prompt(`
             ${description}\n
             Use JSON format, add \`\`\` at the start and end of json:\n
-            ${Object.keys(schema).map(key => `${key}: ${schema[key]}`).join('\n            // ')}
+            ${Object.keys(schema)
+              .map((key) => `${key}: ${schema[key]}`)
+              .join('\n            // ')}
 
             input = ${JSON.stringify(input, null, 4)}
         `);
 
-        const codeBlock = this.getCodeBlock(promptResult);
+      const codeBlock = this.getCodeBlock(promptResult);
 
-        if(codeBlock) {
-            return JSON.parse(codeBlock);
-        }
+      if (codeBlock) {
+        return JSON.parse(codeBlock);
+      }
 
-        return promptResult;
-        };
-    }
+      return promptResult;
+    };
+  }
 
-    // formatFree method
-    formatFree(schema: string) {
-        return async (description: string) => {
-            const promptResult = await this.prompt(`
+  // formatFree method
+  formatFree(schema: string) {
+    return async (description: string) => {
+      const promptResult = await this.prompt(`
             ${description}\n
             Use this format, add \`\`\` at the start and end of content:\n
             ${schema}
         `);
 
-        return this.getCodeBlock(promptResult) ?? promptResult;
-        };
-    }
+      return this.getCodeBlock(promptResult) ?? promptResult;
+    };
+  }
 
-    // useInterpreter method
-    useInterpreter(interpreter: Interpreter, runCode?: boolean) {
-        return async (question: string) => {
-            const promptResult = await this.prompt(`
+  // useInterpreter method
+  useInterpreter(interpreter: Interpreter, runCode?: boolean) {
+    return async (question: string) => {
+      const promptResult = await this.prompt(`
             Write an ${interpreter} program to answer the following question,\n
             use this format:\n
             \`\`\`
@@ -99,19 +107,19 @@ class PromptCraft implements PromptEngineering {
             ${question}
             `);
 
-            const codeBlock = this.getCodeBlock(promptResult);
+      const codeBlock = this.getCodeBlock(promptResult);
 
-            if(runCode && codeBlock) {
-                return eval(codeBlock);
-            }
+      if (runCode && codeBlock) {
+        return eval(codeBlock);
+      }
 
-            if(codeBlock) {
-                return codeBlock;
-            }
+      if (codeBlock) {
+        return codeBlock;
+      }
 
-            return promptResult;
-        };
-    }
+      return promptResult;
+    };
+  }
 }
 
 export default PromptCraft;

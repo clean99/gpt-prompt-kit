@@ -1,17 +1,17 @@
-# PromptJS
+# PromptJS 📚
 
 PromptJS is a library that helps developers interact with AI language models more effectively by using prompt engineering techniques. The library offers several techniques that can be used depending on the situation, improving the clarity and accuracy of prompts, and enabling more effective communication with users.
 
-## Features
+## Features 🎁
 
-1. **Translate**: Ask questions in a clear and concise manner to improve translation accuracy.
-2. **Format (Text Normalization)**: Use a specific format to prompt the user with two available options:
+1. **Translate** 🌐 : Ask questions in a clear and concise manner to improve translation accuracy.
+2. **Format (Text Normalization)** 📝: Use a specific format to prompt the user with two available options:
     - **JSON**: Provide a JSON schema and input, and receive output in this format.
     - **Free**: Specify any desired format and receive output accordingly.
-3. **Interpreter**: Use an external interpreter to answer complex questions, expanding the range of problems that can be tackled. ChatGPT generates code to solve the question, runs it in your Node.js environment, and returns the result.
-4. **ChainOfThought**: Prompt GPT to think through the problem step by step.
+3. **Interpreter** 🧐: Use an external interpreter to answer complex questions, expanding the range of problems that can be tackled. ChatGPT generates code to solve the question, runs it in your Node.js environment, and returns the result.
+4. **ChainOfThought** 🤔: Prompt GPT to think through the problem step by step.
 
-## Installation
+## Installation 📦
 
 Install PromptJS using npm:
 
@@ -20,7 +20,7 @@ npm install prompt-js
 ```
 
 
-## Usage
+## Usage 🚀
 
 Create a new file named `index.js` and add the following code:
 
@@ -51,7 +51,7 @@ const useInterpreter = promptCraft.useInterpreter('python');
 useInterpreter('Calculate the factorial of 5').then(console.log);
 ```
 
-## Development
+## Development 🛠️
 
 To contribute to PromptJS, follow these steps:
 
@@ -87,10 +87,10 @@ npm run lint
 npm run format
 ```
 
-## Contributing
+## Contributing 🤝
 We welcome contributions to PromptJS! If you'd like to contribute, please fork the repository, create a new branch, make your changes, and submit a pull request.
 
-## License
+## License 📄
 PromptJS is licensed under the [MIT License](/LICENSE).
 
 ```

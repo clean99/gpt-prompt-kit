@@ -11,6 +11,26 @@ PromptJS is a library that helps developers interact with AI language models mor
 3. **Interpreter** 🧐: Use an external interpreter to answer complex questions, expanding the range of problems that can be tackled. ChatGPT generates code to solve the question, runs it in your Node.js environment, and returns the result.
 4. **ChainOfThought** 🤔: Prompt GPT to think through the problem step by step.
 
+## Demo 🥸
+
+In demo directory there are some use demo for you to test the abilities of this library.
+
+To use those demo:
+
+1. Install dependencies:
+
+```
+npm install
+```
+
+2. Compile & Run the demo:
+
+```
+tsc demo/translate.ts
+node demo/translate.js
+```
+
+
 ## Installation 📦
 
 Install PromptJS using npm:

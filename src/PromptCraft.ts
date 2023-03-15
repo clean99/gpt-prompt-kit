@@ -1,5 +1,6 @@
 import { Lang, Interpreter } from './constant';
 import { getCodeBlock as defaultGetCodeBlock } from './textNormalization';
+import { runScript } from './utils';
 
 interface PromptEngineering {
   /**
@@ -97,12 +98,14 @@ class PromptCraft implements PromptEngineering {
   useInterpreter(interpreter: Interpreter, runCode?: boolean) {
     return async (question: string) => {
       const promptResult = await this.prompt(`
-            Write an ${interpreter} program to answer the following question,\n
-            use this format:\n
+            Write an ${interpreter} program to answer the following question.\n
+            I will use eval to run the program, run the expression or function at the end but don't print it.\n
+            Only return the program code, don't return the explanation.\n
+            Use this format:\n
             \`\`\`
             <${interpreter} commands and output needed to find answer>
             \`\`\`\n
-            Only return the program code, don't return the explanation.\n
+
             Begin.\n
             ${question}
             `);
@@ -110,7 +113,7 @@ class PromptCraft implements PromptEngineering {
       const codeBlock = this.getCodeBlock(promptResult);
 
       if (runCode && codeBlock) {
-        return eval(codeBlock);
+        return runScript(codeBlock);
       }
 
       if (codeBlock) {

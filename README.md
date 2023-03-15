@@ -1,5 +1,6 @@
 # PromptJS 📚
 
+**Power your AI language model with the ability to run program in NodeJS!**
 PromptJS is a library that helps developers interact with AI language models more effectively by using prompt engineering techniques. The library offers several techniques that can be used depending on the situation, improving the clarity and accuracy of prompts, and enabling more effective communication with users.
 
 ## Features 🎁

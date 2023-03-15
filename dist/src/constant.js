@@ -1,0 +1,37 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Interpreter = exports.Lang = void 0;
+var Lang;
+(function (Lang) {
+    Lang["English"] = "English";
+    Lang["Chinese"] = "Chinese";
+    Lang["Japanese"] = "Japanese";
+    Lang["Korean"] = "Korean";
+    Lang["French"] = "French";
+    Lang["German"] = "German";
+    Lang["Spanish"] = "Spanish";
+    Lang["Italian"] = "Italian";
+    Lang["Indian"] = "Indian";
+    Lang["Filipino"] = "Filipino";
+    Lang["Russian"] = "Russian";
+    Lang["Portuguese"] = "Portuguese";
+    Lang["Dutch"] = "Dutch";
+    Lang["Swedish"] = "Swedish";
+    Lang["Danish"] = "Danish";
+    Lang["Norwegian"] = "Norwegian";
+    Lang["Finnish"] = "Finnish";
+    Lang["Polish"] = "Polish";
+    Lang["Czech"] = "Czech";
+    Lang["Hungarian"] = "Hungarian";
+    Lang["Romanian"] = "Romanian";
+    Lang["Turkish"] = "Turkish";
+    Lang["Greek"] = "Greek";
+    Lang["Bulgarian"] = "Bulgarian";
+    Lang["Arabic"] = "Arabic";
+    Lang["Hebrew"] = "Hebrew";
+    Lang["Hindi"] = "Hindi";
+})(Lang = exports.Lang || (exports.Lang = {}));
+var Interpreter;
+(function (Interpreter) {
+    Interpreter["JS_V8"] = "NodeJS";
+})(Interpreter = exports.Interpreter || (exports.Interpreter = {}));

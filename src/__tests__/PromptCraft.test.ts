@@ -51,25 +51,25 @@ describe('PromptCraft', () => {
     await formatJsonWithSchema(description, input);
 
     expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
-[
-  [
-    "
-            Give the URL and text of the Wikipedia article for the given
-        page name.
+      [
+        [
+          "
+                  Give the URL and text of the Wikipedia article for the given
+              page name.
 
-            Use JSON format, add \`\`\` at the start and end of json:
+                  Use JSON format, add \`\`\` at the start and end of json:
 
-            page_name: The name of the page to get the text for.
-            // page_url: The URL of the page.
-            // page_text: The text of the page.
+                  page_name: The name of the page to get the text for.
+                  // page_url: The URL of the page.
+                  // page_text: The text of the page.
 
-            input = {
-    "page_name": "Taken 4: The Musical"
-}
-        ",
-  ],
-]
-`);
+                  input = {
+          "page_name": "Taken 4: The Musical"
+      }
+              ",
+        ],
+      ]
+    `);
     expect(getCodeBlock).toBeCalled();
   });
 
@@ -89,26 +89,26 @@ describe('PromptCraft', () => {
     await formatFreeWithSchema(description);
 
     expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
-[
-  [
-    "
-            Generate an arXiv pre-print with the given title.
+      [
+        [
+          "
+                  Generate an arXiv pre-print with the given title.
 
-            Use this format, add \`\`\` at the start and end of content:
+                  Use this format, add \`\`\` at the start and end of content:
 
+                  
+            Tilte: <Title>
+            ## Abstract ##
+            <Text of abstract>
+            ## Sections ##
+            <Numbered list of 10 top-level sections>
+            ## Content ##
+            <Text of entire arXiv pre-print in LaTeX notation>
             
-      Tilte: <Title>
-      ## Abstract ##
-      <Text of abstract>
-      ## Sections ##
-      <Numbered list of 10 top-level sections>
-      ## Content ##
-      <Text of entire arXiv pre-print in LaTeX notation>
-      
-        ",
-  ],
-]
-`);
+              ",
+        ],
+      ]
+    `);
 
     expect(getCodeBlock).toBeCalled();
   });
@@ -122,26 +122,29 @@ describe('PromptCraft', () => {
     await useInterpreterWithInterpreter(question);
 
     expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
-[
-  [
-    "
-            Write an NodeJS program to answer the following question,
+      [
+        [
+          "
+                  Write an NodeJS program to answer the following question.
 
-            use this format:
+                  I will use eval to run the program, run the expression or function at the end but don't print it.
 
-            \`\`\`
-            <NodeJS commands and output needed to find answer>
-            \`\`\`
+                  Only return the program code, don't return the explanation.
 
-            Only return the program code, don't return the explanation.
+                  Use this format:
 
-            Begin.
+                  \`\`\`
+                  <NodeJS commands and output needed to find answer>
+                  \`\`\`
 
-            What is the answer to life, the universe, and everything?
-            ",
-  ],
-]
-`);
+
+                  Begin.
+
+                  What is the answer to life, the universe, and everything?
+                  ",
+        ],
+      ]
+    `);
 
     expect(getCodeBlock).toBeCalled();
   });

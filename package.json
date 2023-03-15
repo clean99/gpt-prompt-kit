@@ -1,5 +1,5 @@
 {
-  "name": "prompt-js",
+  "name": "prompt-craft",
   "version": "1.0.0",
   "description": "Help you better prompt by using prompt enigneering technique like external interpreter, chain of thought.",
   "main": "index.js",
@@ -15,7 +15,8 @@
     "prompt-enigneering",
     "chatgpt",
     "chain-of-thought",
-    "perfect-prompt"
+    "perfect-prompt",
+    "prompt-with-program"
   ],
   "author": "clean99",
   "license": "MIT",
@@ -35,5 +36,8 @@
   },
   "dependencies": {
     "openai": "^3.2.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }

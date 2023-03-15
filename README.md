@@ -1,7 +1,7 @@
-# PromptJS 📚
+# PromptCraft 📚
 
 **Power your AI language model with the ability to run program in NodeJS!**
-PromptJS is a library that helps developers interact with AI language models more effectively by using prompt engineering techniques. The library offers several techniques that can be used depending on the situation, improving the clarity and accuracy of prompts, and enabling more effective communication with users.
+PromptCraft is a library that helps developers interact with AI language models more effectively by using prompt engineering techniques. The library offers several techniques that can be used depending on the situation, improving the clarity and accuracy of prompts, and enabling more effective communication with users.
 
 ## Features 🎁
 
@@ -34,7 +34,7 @@ node demo/translate.js
 
 ## Installation 📦
 
-Install PromptJS using npm:
+Install PromptCraft using npm:
 
 ```
 npm install prompt-js
@@ -46,35 +46,40 @@ npm install prompt-js
 Create a new file named `index.js` and add the following code:
 
 ```javascript
-import PromptCraft from 'prompt-js';
+import { PromptCraft, promptCraftFactory } from 'prompt-js';
 
+// custom your prompt function to create a promptCraft instance.
 const prompt = (text) => {
   // Your function to send the text to GPT and receive a response
 };
 
 const promptCraft = new PromptCraft(prompt);
 
+// or you can just pass API_KEY to use the build-in GPT-3.5 model
+
+const promptCraft = promptCraftFactory(API_KEY);
+
 // Example usage:
 // Translate
-const translate = promptCraft.translate('en', 'es');
+const translate = promptCraft.translate(Lang.English, Lang.Chinese);
 translate('Hello, world!').then(console.log);
 
 // Format JSON
-const formatJson = promptCraft.formatJson({ key: 'value' });
-formatJson('Format the input as JSON', { key: 'example' }).then(console.log);
+const formatJson = promptCraft.formatJson({ key: 'explain it', key2: 'explain it' });
+formatJson('Description here', { key: 'example' }).then(console.log);
 
 // Format Free
-const formatFree = promptCraft.formatFree('Key: Value');
-formatFree('Format the input using the free format', { key: 'example' }).then(console.log);
+const formatFree = promptCraft.formatFree('Any format template you want');
+formatFree('Description here').then(console.log);
 
 // Use Interpreter
-const useInterpreter = promptCraft.useInterpreter('python');
+const useInterpreter = promptCraft.useInterpreter(Interpreter.JS_V8, true);
 useInterpreter('Calculate the factorial of 5').then(console.log);
 ```
 
 ## Development 🛠️
 
-To contribute to PromptJS, follow these steps:
+To contribute to PromptCraft, follow these steps:
 
 1. Clone the repository and install dependencies:
 
@@ -109,10 +114,10 @@ npm run format
 ```
 
 ## Contributing 🤝
-We welcome contributions to PromptJS! If you'd like to contribute, please fork the repository, create a new branch, make your changes, and submit a pull request.
+We welcome contributions to PromptCraft! If you'd like to contribute, please fork the repository, create a new branch, make your changes, and submit a pull request.
 
 ## License 📄
-PromptJS is licensed under the [MIT License](/LICENSE).
+PromptCraft is licensed under the [MIT License](/LICENSE).
 
 ```
 

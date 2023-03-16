@@ -33,8 +33,9 @@ interface PromptEngineering {
    * @returns {(question: string) => string} A function that takes a question string and returns the interpreter's answer.
    */
   useInterpreter: (
-    interpreter: Interpreter
-  ) => (question: string) => Promise<string>;
+    interpreter: Interpreter,
+    runCode?: boolean
+  ) => (question: string) => Promise<unknown>;
 }
 
 class PromptCraft implements PromptEngineering {
@@ -99,11 +100,15 @@ class PromptCraft implements PromptEngineering {
     return async (question: string) => {
       const promptResult = await this.prompt(`
             Write an ${interpreter} program to answer the following question.\n
-            I will use eval to run the program, run the expression or function at the end but don't print it.\n
-            Only return the program code, don't return the explanation.\n
+            Assume there is an object variable name result in context, you don't need to re-define it. \n
+            Write a function to solution the problem, call the function and return at the end of the code.\n
+            Don't use any dependency expect node build-in module.\n
+            But you can use \`wikipedia\` to find the answer.\n
             Use this format:\n
             \`\`\`
-            <${interpreter} commands and output needed to find answer>
+            <${interpreter} function and output needed to find answer>\n
+            
+            return <function call>\n
             \`\`\`\n
 
             Begin.\n
@@ -113,7 +118,7 @@ class PromptCraft implements PromptEngineering {
       const codeBlock = this.getCodeBlock(promptResult);
 
       if (runCode && codeBlock) {
-        return runScript(codeBlock);
+        return await runScript(codeBlock);
       }
 
       if (codeBlock) {

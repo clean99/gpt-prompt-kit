@@ -1,8 +1,8 @@
 {
   "name": "gpt-prompt-kit",
-  "version": "1.0.6",
+  "version": "1.0.4",
   "description": "Help you better prompt by using prompt engineering technique like external interpreter, chain of thought.",
-  "main": "index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -35,7 +35,8 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "openai": "^3.2.1"
+    "openai": "^3.2.1",
+    "vm2": "^3.9.14"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

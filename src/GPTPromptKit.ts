@@ -64,12 +64,16 @@ class GPTPromptKit implements PromptEngineering {
     return async (description: string, input: object) => {
       const promptResult = await this.prompt(`
             ${description}\n
-            Use JSON format, add \`\`\` at the start and end of json:\n
+            Add \`\`\` at the start and end of json:\n
             ${Object.keys(schema)
               .map((key) => `${key}: ${schema[key]}`)
               .join('\n            // ')}
 
             input = ${JSON.stringify(input, null, 4)}
+            Use JSON format:
+            \`\`\`
+            <JSON string>
+            \`\`\`
         `);
 
       const codeBlock = this.getCodeBlock(promptResult);

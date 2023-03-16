@@ -78,9 +78,28 @@ node demo/translate.js
 
 ### Translate
 
+![translator](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/translate.png "translator")
+![translator](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/translate2.png "translator")
+
 ### Format JSON
+
+You can get a JSON string with any fields you want:
+
+![formatJson](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatJSON.png "formatJson")
+![formatJson](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatJSON2.png "formatJson")
+
 ### Format Free
+
+![formatFree](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatFree.png "formatFree")
+![formatFree](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatFree2.png "formatFree")
+
 ### Use Interpreter
+
+Run the code that generate by gpt in NodeJS:
+
+![useInterpreter](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/interpreter.png "useInterpreter")
+![useInterpreter](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/interpreter2.png "useInterpreter")
+
 
 
 

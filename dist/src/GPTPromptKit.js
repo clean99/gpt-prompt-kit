@@ -28,12 +28,16 @@ class GPTPromptKit {
         return (description, input) => __awaiter(this, void 0, void 0, function* () {
             const promptResult = yield this.prompt(`
             ${description}\n
-            Use JSON format, add \`\`\` at the start and end of json:\n
+            Add \`\`\` at the start and end of json:\n
             ${Object.keys(schema)
                 .map((key) => `${key}: ${schema[key]}`)
                 .join('\n            // ')}
 
             input = ${JSON.stringify(input, null, 4)}
+            Use JSON format:
+            \`\`\`
+            <JSON string>
+            \`\`\`
         `);
             const codeBlock = this.getCodeBlock(promptResult);
             if (codeBlock) {

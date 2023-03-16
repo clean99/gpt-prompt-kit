@@ -1,6 +1,6 @@
 {
   "name": "prompt-craft",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Help you better prompt by using prompt enigneering technique like external interpreter, chain of thought.",
   "main": "index.js",
   "scripts": {

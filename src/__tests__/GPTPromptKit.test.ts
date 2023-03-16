@@ -1,5 +1,5 @@
 import { Interpreter, Lang } from '../constant';
-import PromptCraft from '../PromptCraft';
+import GPTPromptKit from '../GPTPromptKit';
 import * as defaultPrompt from '../prompt';
 
 // mock ./prompt
@@ -9,24 +9,24 @@ jest.mock('../prompt', () => {
   };
 });
 
-describe('PromptCraft', () => {
+describe('GPTPromptKit', () => {
   const mockOpenai = jest.fn();
   const getCodeBlock = jest.fn();
   const mockPrompt = jest.fn();
-  const promptCraft: PromptCraft = new PromptCraft(mockPrompt, getCodeBlock);
+  const gptPromptKit: GPTPromptKit = new GPTPromptKit(mockPrompt, getCodeBlock);
   beforeEach(() => {
     getCodeBlock.mockClear();
     mockPrompt.mockClear();
   });
 
-  it('should init an instance with correct api key when new a promptCraft', () => {
-    expect(promptCraft).toBeDefined();
+  it('should init an instance with correct api key when new a gptPromptKit', () => {
+    expect(gptPromptKit).toBeDefined();
   });
 
   it('should call prompt with correct text when call translate', async () => {
     const from = Lang.French;
     const to = Lang.English;
-    const translator = promptCraft.translate(from, to);
+    const translator = gptPromptKit.translate(from, to);
     const text = 'hello';
 
     await translator(text);
@@ -46,7 +46,7 @@ describe('PromptCraft', () => {
     const input = {
       page_name: 'Taken 4: The Musical',
     };
-    const formatJsonWithSchema = promptCraft.formatJson(jsonSchema);
+    const formatJsonWithSchema = gptPromptKit.formatJson(jsonSchema);
 
     await formatJsonWithSchema(description, input);
 
@@ -84,7 +84,7 @@ describe('PromptCraft', () => {
       <Text of entire arXiv pre-print in LaTeX notation>
       `;
     const description = `Generate an arXiv pre-print with the given title.`;
-    const formatFreeWithSchema = promptCraft.formatFree(customSchema);
+    const formatFreeWithSchema = gptPromptKit.formatFree(customSchema);
 
     await formatFreeWithSchema(description);
 
@@ -117,7 +117,7 @@ describe('PromptCraft', () => {
     const interpreter = Interpreter.JS_V8;
     const question = `What is the answer to life, the universe, and everything?`;
     const useInterpreterWithInterpreter =
-      promptCraft.useInterpreter(interpreter);
+      gptPromptKit.useInterpreter(interpreter);
 
     await useInterpreterWithInterpreter(question);
 
@@ -127,14 +127,18 @@ describe('PromptCraft', () => {
           "
                   Write an NodeJS program to answer the following question.
 
-                  I will use eval to run the program, run the expression or function at the end but don't print it.
+                  Write a function to solution the problem, call the function and return at the end of the code.
 
-                  Only return the program code, don't return the explanation.
+                  Don't use any third party module expect nodejs build-in module.
 
                   Use this format:
 
                   \`\`\`
-                  <NodeJS commands and output needed to find answer>
+                  <NodeJS function and output needed to find answer>
+
+                  
+                  return <function call>
+
                   \`\`\`
 
 

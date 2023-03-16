@@ -38,7 +38,7 @@ interface PromptEngineering {
   ) => (question: string) => Promise<unknown>;
 }
 
-class PromptCraft implements PromptEngineering {
+class GPTPromptKit implements PromptEngineering {
   // prompt method, pass when construct
   private prompt: (text: string) => Promise<string>;
   private getCodeBlock: (text: string) => string | null;
@@ -128,4 +128,4 @@ class PromptCraft implements PromptEngineering {
   }
 }
 
-export default PromptCraft;
+export default GPTPromptKit;

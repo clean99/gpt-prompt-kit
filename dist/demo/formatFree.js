@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../src/index");
-const promptCraft = (0, index_1.promptCraftFactory)('Your API key');
-const formatFree = promptCraft.formatFree(`
+const gptPromptKit = (0, index_1.gptPromptKitFactory)('Your API key');
+const formatFree = gptPromptKit.formatFree(`
     Tilte: <Title>
     ## Abstract ##
     <Text of abstract>

@@ -1,7 +1,7 @@
 {
-  "name": "prompt-craft",
-  "version": "1.0.4",
-  "description": "Help you better prompt by using prompt enigneering technique like external interpreter, chain of thought.",
+  "name": "gpt-prompt-kit",
+  "version": "1.0.6",
+  "description": "Help you better prompt by using prompt engineering technique like external interpreter, chain of thought.",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "prompt",
-    "prompt-enigneering",
+    "prompt-engineering",
     "chatgpt",
     "chain-of-thought",
     "perfect-prompt",

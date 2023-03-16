@@ -1,8 +1,8 @@
-import { promptCraftFactory } from '../src/index';
+import { gptPromptKitFactory } from '../src/index';
 
-const promptCraft = promptCraftFactory('Your API key');
+const gptPromptKit = gptPromptKitFactory('Your API key');
 
-const formatJson = promptCraft.formatJson({
+const formatJson = gptPromptKit.formatJson({
   title: 'The title of the subject.',
   subjects: 'The subjects list under the title.',
 });

@@ -1,8 +1,8 @@
-import { promptCraftFactory } from '../src/index';
+import { gptPromptKitFactory } from '../src/index';
 
-const promptCraft = promptCraftFactory('Your API key');
+const gptPromptKit = gptPromptKitFactory('Your API key');
 
-const formatFree = promptCraft.formatFree(`
+const formatFree = gptPromptKit.formatFree(`
     Tilte: <Title>
     ## Abstract ##
     <Text of abstract>

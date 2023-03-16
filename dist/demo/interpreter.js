@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const constant_1 = require("../src/constant");
 const index_1 = require("../src/index");
-const promptCraft = (0, index_1.promptCraftFactory)('Your API Key');
-const gptWithInterpreterAndRunCode = promptCraft.useInterpreter(constant_1.Interpreter.JS_V8, true);
-const gptWithInterpreterButNotRunCode = promptCraft.useInterpreter(constant_1.Interpreter.JS_V8, false);
+const gptPromptKit = (0, index_1.gptPromptKitFactory)('Your API Key');
+const gptWithInterpreterAndRunCode = gptPromptKit.useInterpreter(constant_1.Interpreter.JS_V8, true);
+const gptWithInterpreterButNotRunCode = gptPromptKit.useInterpreter(constant_1.Interpreter.JS_V8, false);
 const mathQuestion = `What is the result of 7 + 14 ^ 3?`;
 const algorithm = `What is the LIS length of [10,9,2,5,3,7,101,18]?`;
 const hackProgram = `Write a program that causes memory leak`;

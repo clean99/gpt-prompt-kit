@@ -1,9 +1,9 @@
 import { Lang } from '../src/constant';
-import { promptCraftFactory } from '../src/index';
+import { gptPromptKitFactory } from '../src/index';
 
-const promptCraft = promptCraftFactory('Your API key');
+const gptPromptKit = gptPromptKitFactory('Your API key');
 
-const translator = promptCraft.translate(Lang.English, Lang.Chinese);
+const translator = gptPromptKit.translate(Lang.English, Lang.Chinese);
 
 translator('This is an awesome library, gpt is awesome!').then(console.log);
 

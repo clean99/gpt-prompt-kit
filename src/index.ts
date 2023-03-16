@@ -1,14 +1,14 @@
-import PromptCraft from './PromptCraft';
+import GPTPromptKit from './GPTPromptKit';
 import * as defaultPrompt from './prompt';
 import * as textNormalization from './textNormalization';
 import * as constant from './constant';
 
-const promptCraftFactory = (apiKey: string) =>
-  new PromptCraft(defaultPrompt.promptWithTextGenerator(apiKey));
+const gptPromptKitFactory = (apiKey: string) =>
+  new GPTPromptKit(defaultPrompt.promptWithTextGenerator(apiKey));
 
 export {
-  promptCraftFactory,
-  PromptCraft,
+  gptPromptKitFactory,
+  GPTPromptKit,
   defaultPrompt,
   textNormalization,
   constant,

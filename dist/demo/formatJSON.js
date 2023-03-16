@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../src/index");
-const promptCraft = (0, index_1.promptCraftFactory)('Your API key');
-const formatJson = promptCraft.formatJson({
+const gptPromptKit = (0, index_1.gptPromptKitFactory)('Your API key');
+const formatJson = gptPromptKit.formatJson({
     title: 'The title of the subject.',
     subjects: 'The subjects list under the title.',
 });

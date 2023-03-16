@@ -1,13 +1,13 @@
 import { Interpreter } from '../src/constant';
-import { promptCraftFactory } from '../src/index';
+import { gptPromptKitFactory } from '../src/index';
 
-const promptCraft = promptCraftFactory('Your API Key');
+const gptPromptKit = gptPromptKitFactory('Your API Key');
 
-const gptWithInterpreterAndRunCode = promptCraft.useInterpreter(
+const gptWithInterpreterAndRunCode = gptPromptKit.useInterpreter(
   Interpreter.JS_V8,
   true
 );
-const gptWithInterpreterButNotRunCode = promptCraft.useInterpreter(
+const gptWithInterpreterButNotRunCode = gptPromptKit.useInterpreter(
   Interpreter.JS_V8,
   false
 );

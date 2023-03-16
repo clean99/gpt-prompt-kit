@@ -14,12 +14,10 @@ const gptWithInterpreterButNotRunCode = promptCraft.useInterpreter(
 
 const mathQuestion = `What is the result of 7 + 14 ^ 3?`;
 const algorithm = `What is the LIS length of [10,9,2,5,3,7,101,18]?`;
-const getWikiPage = `What is the death date of Elizabeth II?`;
 const hackProgram = `Write a program that causes memory leak`;
 
 gptWithInterpreterAndRunCode(mathQuestion).then(console.log);
 gptWithInterpreterAndRunCode(algorithm).then(console.log);
-gptWithInterpreterAndRunCode(getWikiPage).then(console.log);
 gptWithInterpreterButNotRunCode(hackProgram).then(console.log);
 
 /**

@@ -30,9 +30,9 @@ function runScript(script) {
             },
         });
         // Run the script in the context and capture the result
-        const vmExports = vm.run(script);
+        const vmExports = yield vm.run(script);
         // Return the result
-        return yield vmExports;
+        return vmExports;
     });
 }
 exports.runScript = runScript;

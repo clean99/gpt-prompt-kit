@@ -59,10 +59,8 @@ class PromptCraft {
         return (question) => __awaiter(this, void 0, void 0, function* () {
             const promptResult = yield this.prompt(`
             Write an ${interpreter} program to answer the following question.\n
-            Assume there is an object variable name result in context, you don't need to re-define it. \n
             Write a function to solution the problem, call the function and return at the end of the code.\n
-            Don't use any dependency expect node build-in module.\n
-            But you can use \`wikipedia\` to find the answer.\n
+            Don't use any third party module expect nodejs build-in module.\n
             Use this format:\n
             \`\`\`
             <${interpreter} function and output needed to find answer>\n

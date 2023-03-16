@@ -19,8 +19,8 @@ export async function runScript(script: string) {
   });
 
   // Run the script in the context and capture the result
-  const vmExports = vm.run(script);
+  const vmExports = await vm.run(script);
 
   // Return the result
-  return await vmExports;
+  return vmExports;
 }

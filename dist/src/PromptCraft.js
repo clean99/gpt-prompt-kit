@@ -59,11 +59,15 @@ class PromptCraft {
         return (question) => __awaiter(this, void 0, void 0, function* () {
             const promptResult = yield this.prompt(`
             Write an ${interpreter} program to answer the following question.\n
-            I will use eval to run the program, run the expression or function at the end but don't print it.\n
-            Only return the program code, don't return the explanation.\n
+            Assume there is an object variable name result in context, you don't need to re-define it. \n
+            Write a function to solution the problem, call the function and return at the end of the code.\n
+            Don't use any dependency expect node build-in module.\n
+            But you can use \`wikipedia\` to find the answer.\n
             Use this format:\n
             \`\`\`
-            <${interpreter} commands and output needed to find answer>
+            <${interpreter} function and output needed to find answer>\n
+            
+            return <function call>\n
             \`\`\`\n
 
             Begin.\n
@@ -71,7 +75,7 @@ class PromptCraft {
             `);
             const codeBlock = this.getCodeBlock(promptResult);
             if (runCode && codeBlock) {
-                return (0, utils_1.runScript)(codeBlock);
+                return yield (0, utils_1.runScript)(codeBlock);
             }
             if (codeBlock) {
                 return codeBlock;

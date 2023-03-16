@@ -24,7 +24,7 @@ interface PromptEngineering {
      * @param {Interpreter} interpreter The name or path of the external interpreter to use.
      * @returns {(question: string) => string} A function that takes a question string and returns the interpreter's answer.
      */
-    useInterpreter: (interpreter: Interpreter) => (question: string) => Promise<string>;
+    useInterpreter: (interpreter: Interpreter, runCode?: boolean) => (question: string) => Promise<unknown>;
 }
 declare class PromptCraft implements PromptEngineering {
     private prompt;

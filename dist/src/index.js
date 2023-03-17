@@ -22,18 +22,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.constant = exports.textNormalization = exports.defaultPrompt = exports.GPTPromptKit = exports.gptPromptKitFactory = void 0;
+exports.GPTPromptKit = exports.defaultPrompt = exports.gptPromptKitFactory = void 0;
 const GPTPromptKit_1 = __importDefault(require("./GPTPromptKit"));
-exports.GPTPromptKit = GPTPromptKit_1.default;
 const defaultPrompt = __importStar(require("./prompt"));
-exports.defaultPrompt = defaultPrompt;
-const textNormalization = __importStar(require("./textNormalization"));
-exports.textNormalization = textNormalization;
-const constant = __importStar(require("./constant"));
-exports.constant = constant;
 const gptPromptKitFactory = (apiKey) => new GPTPromptKit_1.default(defaultPrompt.promptWithTextGenerator(apiKey));
 exports.gptPromptKitFactory = gptPromptKitFactory;
+exports.defaultPrompt = __importStar(require("./prompt"));
+__exportStar(require("./textNormalization"), exports);
+__exportStar(require("./constant"), exports);
+var GPTPromptKit_2 = require("./GPTPromptKit");
+Object.defineProperty(exports, "GPTPromptKit", { enumerable: true, get: function () { return __importDefault(GPTPromptKit_2).default; } });

@@ -26,7 +26,7 @@ npm install gpt-prompt-kit
 Create a new file named `index.js` and add the following code:
 
 ```javascript
-import { GPTPromptKit, GPTPromptKitFactory } from 'gpt-prompt-kit';
+import { GPTPromptKit, gptPromptKitFactory } from 'gpt-prompt-kit';
 
 // custom your prompt function to create a gPTPromptKit instance.
 const prompt = (text) => {
@@ -37,7 +37,7 @@ const gptPromptKit = new GPTPromptKit(prompt);
 
 // or you can just pass API_KEY to use the build-in GPT-3.5 model
 
-const gptPromptKit = GPTPromptKitFactory(API_KEY);
+const gptPromptKit = gptPromptKitFactory(API_KEY);
 
 // Example usage:
 // Translate

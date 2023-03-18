@@ -61,7 +61,7 @@ describe('GPTPromptKit', () => {
                   Give the URL and text of the Wikipedia article for the given
               page name.
 
-                  Use JSON format, add \`\`\` at the start and end of json:
+                  Add \`\`\` at the start and end of json:
 
                   page_name: The name of the page to get the text for.
                   // page_url: The URL of the page.
@@ -70,6 +70,10 @@ describe('GPTPromptKit', () => {
                   input = {
           "page_name": "Taken 4: The Musical"
       }
+                  Use JSON format:
+                  \`\`\`
+                  <JSON string>
+                  \`\`\`
               ",
         ],
       ]

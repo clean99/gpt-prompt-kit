@@ -1,6 +1,5 @@
 import { Lang, Interpreter } from './constant';
 import { getCodeBlock as defaultGetCodeBlock } from './textNormalization';
-import { runScript } from './utils';
 
 interface PromptEngineering {
   /**
@@ -34,7 +33,7 @@ interface PromptEngineering {
    */
   useInterpreter: (
     interpreter: Interpreter,
-    runCode?: boolean
+    runCode?: boolean // only avaliable for nodejs, not browser
   ) => (question: string) => Promise<unknown>;
 }
 
@@ -119,7 +118,8 @@ class GPTPromptKit implements PromptEngineering {
 
       const codeBlock = this.getCodeBlock(promptResult);
 
-      if (runCode && codeBlock) {
+      if (typeof window === 'undefined' && runCode && codeBlock) {
+        const { runScript } = await import('./utils');
         return await runScript(codeBlock);
       }
 

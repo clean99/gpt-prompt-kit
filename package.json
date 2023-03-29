@@ -1,6 +1,6 @@
 {
   "name": "gpt-prompt-kit",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Help you better prompt by using prompt engineering technique like external interpreter, chain of thought.",
   "repository": "https://github.com/clean99/gpt-prompt-kit",
   "main": "dist/src/index.js",

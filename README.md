@@ -96,6 +96,7 @@ You can get a JSON string with any fields you want:
 ### 1.1.1
 - delete interpreter so that browser also can use this library.
 - add customize option for gptPromptKitFactory. Now we can use different GPT model.
+![customizedOptions](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/customizedOptions.png "customizedOptions")
 
 ## Development 🛠️
 

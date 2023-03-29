@@ -10,7 +10,6 @@ jest.mock('../prompt', () => {
 });
 
 describe('GPTPromptKit', () => {
-  const mockOpenai = jest.fn();
   const getCodeBlock = jest.fn();
   const mockPrompt = jest.fn();
   const gptPromptKit: GPTPromptKit = new GPTPromptKit(mockPrompt, getCodeBlock);
@@ -110,46 +109,6 @@ describe('GPTPromptKit', () => {
             <Text of entire arXiv pre-print in LaTeX notation>
             
               ",
-        ],
-      ]
-    `);
-
-    expect(getCodeBlock).toBeCalled();
-  });
-
-  it('should call prompt with correct text when call useInterpreter', async () => {
-    const interpreter = Interpreter.JS_V8;
-    const question = `What is the answer to life, the universe, and everything?`;
-    const useInterpreterWithInterpreter =
-      gptPromptKit.useInterpreter(interpreter);
-
-    await useInterpreterWithInterpreter(question);
-
-    expect(mockPrompt.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "
-                  Write an NodeJS program to answer the following question.
-
-                  Write a function to solution the problem, call the function and return at the end of the code.
-
-                  Don't use any third party module expect nodejs build-in module.
-
-                  Use this format:
-
-                  \`\`\`
-                  <NodeJS function and output needed to find answer>
-
-                  
-                  return <function call>
-
-                  \`\`\`
-
-
-                  Begin.
-
-                  What is the answer to life, the universe, and everything?
-                  ",
         ],
       ]
     `);

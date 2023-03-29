@@ -1,4 +1,4 @@
-import { Lang, Interpreter } from './constant';
+import { Lang } from './constant';
 interface PromptEngineering {
     /**
      * Returns a function that translates the given text from the specified source language to the target language.
@@ -19,12 +19,6 @@ interface PromptEngineering {
      * @returns {(description: string) => string} A function that takes an description and returns the formatted string.
      */
     formatFree: (format: string) => (description: string) => Promise<string>;
-    /**
-     * Returns a function that uses an external interpreter to answer the given question.
-     * @param {Interpreter} interpreter The name or path of the external interpreter to use.
-     * @returns {(question: string) => string} A function that takes a question string and returns the interpreter's answer.
-     */
-    useInterpreter: (interpreter: Interpreter, runCode?: boolean) => (question: string) => Promise<unknown>;
 }
 declare class GPTPromptKit implements PromptEngineering {
     private prompt;
@@ -33,6 +27,5 @@ declare class GPTPromptKit implements PromptEngineering {
     translate(from: Lang, to: Lang): (text: string) => Promise<string>;
     formatJson(schema: Record<string, unknown>): (description: string, input: object) => Promise<any>;
     formatFree(schema: string): (description: string) => Promise<string>;
-    useInterpreter(interpreter: Interpreter, runCode?: boolean): (question: string) => Promise<any>;
 }
 export default GPTPromptKit;

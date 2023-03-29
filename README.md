@@ -1,6 +1,6 @@
 # GPTPromptKit 📚
 
-**Power your AI language model with the ability to run program in NodeJS!**
+**Get Format DATA(Like JSON) from GPT!**
 GPTPromptKit is a library that helps developers interact with AI language models more effectively by using prompt engineering techniques. The library offers several techniques that can be used depending on the situation, improving the clarity and accuracy of prompts, and enabling more effective communication with users.
 
 repo: [gpt-prompt-kit](https://github.com/clean99/gpt-prompt-kit)
@@ -11,8 +11,7 @@ repo: [gpt-prompt-kit](https://github.com/clean99/gpt-prompt-kit)
 2. **Format (Text Normalization)** 📝: Use a specific format to prompt the user with two available options:
     - **JSON**: Provide a JSON schema and input, and receive output in this format.
     - **Free**: Specify any desired format and receive output accordingly.
-3. **Interpreter** 🧐: Use an external interpreter to answer complex questions, expanding the range of problems that can be tackled. ChatGPT generates code to solve the question, runs it in your Node.js environment, and returns the result.
-4. **ChainOfThought** 🤔: Prompt GPT to think through the problem step by step.
+3. **ChainOfThought** 🤔: Prompt GPT to think through the problem step by step.(Coming soon)
 
 ## Installation 📦
 
@@ -54,9 +53,6 @@ formatJson('Description here', { key: 'example' }).then(console.log);
 const formatFree = gptPromptKit.formatFree('Any format template you want');
 formatFree('Description here').then(console.log);
 
-// Use Interpreter
-const useInterpreter = gptPromptKit.useInterpreter(Interpreter.JS_V8, true);
-useInterpreter('Calculate the factorial of 5').then(console.log);
 ```
 
 ## Demo 🥸
@@ -95,16 +91,11 @@ You can get a JSON string with any fields you want:
 ![formatFree](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatFree.png "formatFree")
 ![formatFree](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/formatFree2.png "formatFree")
 
-### Use Interpreter
+## Changelog 📝
 
-Run the code that generate by gpt in NodeJS:
-
-![useInterpreter](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/interpreter.png "useInterpreter")
-![useInterpreter](https://github.com/clean99/gpt-prompt-kit/blob/main//demo-img/interpreter2.png "useInterpreter")
-
-
-
-
+### 1.1.1
+- delete interpreter so that browser also can use this library.
+- add customize option for gptPromptKitFactory. Now we can use different GPT model.
 
 ## Development 🛠️
 

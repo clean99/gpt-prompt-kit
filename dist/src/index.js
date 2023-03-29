@@ -32,7 +32,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GPTPromptKit = exports.defaultPrompt = exports.gptPromptKitFactory = void 0;
 const GPTPromptKit_1 = __importDefault(require("./GPTPromptKit"));
 const defaultPrompt = __importStar(require("./prompt"));
-const gptPromptKitFactory = (apiKey) => new GPTPromptKit_1.default(defaultPrompt.promptWithTextGenerator(apiKey));
+const gptPromptKitFactory = (apiKey, options) => new GPTPromptKit_1.default(defaultPrompt.promptWithTextGenerator(apiKey, options));
 exports.gptPromptKitFactory = gptPromptKitFactory;
 exports.defaultPrompt = __importStar(require("./prompt"));
 __exportStar(require("./textNormalization"), exports);

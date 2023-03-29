@@ -24,7 +24,7 @@ export const prompt = async (
 };
 
 export const promptWithTextGenerator =
-  (apiKey: string) =>
+  (apiKey: string, options?: any) =>
   async (content: string): Promise<string> => {
     const configuration = new Configuration({
       apiKey,
@@ -32,6 +32,7 @@ export const promptWithTextGenerator =
     const openai = new OpenAIApi(configuration);
     return prompt(
       [{ content, role: ChatCompletionRequestMessageRoleEnum.User }],
-      openai
+      openai,
+      options
     );
   };

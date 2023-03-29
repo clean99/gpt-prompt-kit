@@ -25,16 +25,6 @@ interface PromptEngineering {
    * @returns {(description: string) => string} A function that takes an description and returns the formatted string.
    */
   formatFree: (format: string) => (description: string) => Promise<string>;
-
-  /**
-   * Returns a function that uses an external interpreter to answer the given question.
-   * @param {Interpreter} interpreter The name or path of the external interpreter to use.
-   * @returns {(question: string) => string} A function that takes a question string and returns the interpreter's answer.
-   */
-  useInterpreter: (
-    interpreter: Interpreter,
-    runCode?: boolean // only avaliable for nodejs, not browser
-  ) => (question: string) => Promise<unknown>;
 }
 
 class GPTPromptKit implements PromptEngineering {
@@ -95,39 +85,6 @@ class GPTPromptKit implements PromptEngineering {
         `);
 
       return this.getCodeBlock(promptResult) ?? promptResult;
-    };
-  }
-
-  // useInterpreter method
-  useInterpreter(interpreter: Interpreter, runCode?: boolean) {
-    return async (question: string) => {
-      const promptResult = await this.prompt(`
-            Write an ${interpreter} program to answer the following question.\n
-            Write a function to solution the problem, call the function and return at the end of the code.\n
-            Don't use any third party module expect nodejs build-in module.\n
-            Use this format:\n
-            \`\`\`
-            <${interpreter} function and output needed to find answer>\n
-            
-            return <function call>\n
-            \`\`\`\n
-
-            Begin.\n
-            ${question}
-            `);
-
-      const codeBlock = this.getCodeBlock(promptResult);
-
-      if (typeof window === 'undefined' && runCode && codeBlock) {
-        const { runScript } = await import('./utils');
-        return await runScript(codeBlock);
-      }
-
-      if (codeBlock) {
-        return codeBlock;
-      }
-
-      return promptResult;
     };
   }
 }

@@ -22,11 +22,11 @@ const prompt = (messages, openai, options = DEFUALT_OPTIONS) => __awaiter(void 0
     return (_e = (_d = (_c = (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.choices) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.message) === null || _d === void 0 ? void 0 : _d.content) !== null && _e !== void 0 ? _e : '';
 });
 exports.prompt = prompt;
-const promptWithTextGenerator = (apiKey) => (content) => __awaiter(void 0, void 0, void 0, function* () {
+const promptWithTextGenerator = (apiKey, options) => (content) => __awaiter(void 0, void 0, void 0, function* () {
     const configuration = new openai_1.Configuration({
         apiKey,
     });
     const openai = new openai_1.OpenAIApi(configuration);
-    return (0, exports.prompt)([{ content, role: openai_1.ChatCompletionRequestMessageRoleEnum.User }], openai);
+    return (0, exports.prompt)([{ content, role: openai_1.ChatCompletionRequestMessageRoleEnum.User }], openai, options);
 });
 exports.promptWithTextGenerator = promptWithTextGenerator;
